@@ -24,5 +24,4 @@ jobs:
           style: file
           tidy-checks: '-*' # Disable all clang-tidy checks for now. Enable checks as needed.
           lines-changed-only: true
-          thread-comments: false
-
+          format-review: true
