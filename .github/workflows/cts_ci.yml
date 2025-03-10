@@ -25,3 +25,4 @@ jobs:
           tidy-checks: '-*' # Disable all clang-tidy checks for now. Enable checks as needed.
           lines-changed-only: true
           format-review: true
+          passive-reviews: true
