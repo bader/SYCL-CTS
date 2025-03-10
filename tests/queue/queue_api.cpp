@@ -38,7 +38,7 @@ TEST_CASE("Check the api for sycl::queue", "[queue]") {
     {
       auto queue = util::get_cts_object::queue(cts_selector);
 
-      auto context = queue.get_context();
+        auto context = queue.get_context();
       check_return_type<sycl::context>(context, "sycl::queue::get_context()");
     }
 
@@ -56,7 +56,7 @@ TEST_CASE("Check the api for sycl::queue", "[queue]") {
     {
       auto queue = util::get_cts_object::queue(cts_selector);
 
-      auto event = queue.submit([&](sycl::handler &handler) {
+        auto event = queue.submit([&](sycl::handler &handler) {
         handler.single_task<class queue_api_0>([=] {});
       });
       check_return_type<sycl::event>(
