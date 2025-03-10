@@ -19,8 +19,8 @@
 //
 *******************************************************************************/
 
-#include "../common/common.h"
 #include <thread>
+#include "../common/common.h"
 
 namespace queue_api {
 
@@ -137,7 +137,7 @@ TEST_CASE("Check the api for sycl::queue", "[queue]") {
     {
       auto queue = util::get_cts_object::queue(cts_selector);
 
-      queue.throw_asynchronous();
+      queue.throw_asynchronous();   
     }
   }
 }
