@@ -103,6 +103,9 @@ jobs:
           tidy-checks: '-*' # Disable all clang-tidy checks for now. Enable checks as needed.
           step-summary: true
           lines-changed-only: true
+      - name: Fail fast?!
+        if: steps.linter.outputs.clang-format-checks-failed > 0
+        run: exit 1
 
   compile-cts:
     needs: build-image-for-sycl-impl
