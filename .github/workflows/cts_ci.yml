@@ -24,7 +24,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           style: file
-          version: '21'
           tidy-checks: '-*' # Disable all clang-tidy checks for now. Enable checks as needed.
           lines-changed-only: true
       - name: Fail fast?!
