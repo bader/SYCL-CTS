@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           submodules: true
       - name: Set up Docker Buildx
@@ -63,7 +63,7 @@ jobs:
             version: 27ca7a05e65d24c784ba831225d0a53341719590
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           submodules: true
       - name: Set up Docker Buildx
@@ -86,16 +86,16 @@ jobs:
 
   check-clang-format:
     if: github.event_name == 'pull_request'
-    runs-on: "ubuntu-22.04"
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0 # Need to check out base branch as well
       - name: Run clang-format on changed files
         run: |
           set -o errexit -o pipefail -o noclobber -o nounset
-          DIFF=$( git diff -U0 --no-color ${{ github.event.pull_request.base.sha }} | clang-format-diff-14 -p1 )
+          DIFF=$( git diff -U0 --no-color ${{ github.event.pull_request.base.sha }} | clang-format-diff-18 -p1 )
           if [ ! -z "$DIFF" ]; then
             echo 'The following changes are not formatted according to `clang-format`:' >> $GITHUB_STEP_SUMMARY
             echo '```diff' >> $GITHUB_STEP_SUMMARY
@@ -128,7 +128,7 @@ jobs:
       image: khronosgroup/sycl-cts-ci:${{ matrix.sycl-impl }}-${{ matrix.version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           submodules: true
       - name: Configure CMake
@@ -179,7 +179,7 @@ jobs:
   cts-compiles-for-all-implementations:
     needs: [compile-cts]
     if: always()
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Summarize matrix build results
         run: |
